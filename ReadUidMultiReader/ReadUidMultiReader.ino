@@ -45,7 +45,7 @@ MFRC522 mfrc522[NR_OF_READERS];   // Create MFRC522 instance.
  */
 void setup() {
 
-  Serial.begin(9600); // Initialize serial communications with the PC
+  Serial.begin(230400); // Initialize serial communications with the PC
   while (!Serial);    // Do nothing if no serial port is opened (added for Arduinos based on ATMEGA32U4)
 
   SPI.begin();        // Init SPI bus
@@ -72,8 +72,8 @@ void loop() {
 
     if (mfrc522[reader].PICC_IsNewCardPresent() && mfrc522[reader].PICC_ReadCardSerial()) {
      Serial.println();
-     Serial.println("Reader");
-      Serial.println(reader);
+     //Serial.println("Reader ");
+      Serial.print(reader);
       // Show some details of the PICC (that is: the tag/card)
       //Serial.print(F(": Card UID:"));
       dump_byte_array(mfrc522[reader].uid.uidByte, mfrc522[reader].uid.size);
