@@ -61,16 +61,17 @@ void setup() {
     //mfrc522[reader].PCD_DumpVersionToSerial();
   }
 }
-
+int a = 0;
 /**
  * Main loop.
- */
+ */ 
 void loop() {
 
   for (uint8_t reader = 0; reader < NR_OF_READERS; reader++) {
     // Look for new cards
 
     if (mfrc522[reader].PICC_IsNewCardPresent() && mfrc522[reader].PICC_ReadCardSerial()) {
+      a++;
      Serial.println();
      //Serial.println("Reader ");
       Serial.print(reader);
@@ -87,6 +88,9 @@ void loop() {
       // Stop encryption on PCD
       mfrc522[reader].PCD_StopCrypto1();
     } //if (mfrc522[reader].PICC_IsNewC
+    else{
+      Serial.println(false);
+    }
   } //for(uint8_t reader
 }
 
